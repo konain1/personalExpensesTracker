@@ -9,6 +9,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import AllExpenses from './Screens/AllExpenses'
 import ManageExpense from './Screens/ManageExpense'
 import RecentExpenses from './Screens/RecentExpenses'
+import IconsButton from './components/UI/IconsButton'
 
 
 const Stack = createNativeStackNavigator()
@@ -22,9 +23,10 @@ export default function App () {
         headerStyle:{backgroundColor:GlobalStyles.colors.primary500 },
         headerTintColor:'white',
         tabBarStyle:{backgroundColor:GlobalStyles.colors.primary500},
-        tabBarActiveTintColor:GlobalStyles.colors.accent500
+        tabBarActiveTintColor:GlobalStyles.colors.accent500,
+        headerRight:({tintColor})=> <IconsButton name="plus" size={24} color="white"  onPress={()=>{}}/>
       }}>
-        <Tab.Screen name='RecentExpenses' component={RecentExpenses} options={{headerShown:false , tabBarLabel:'Recent' , title:'RecentExpesesss' , tabBarIcon:({size,color})=>(<AntDesign name="hourglass" size={size} color={color} />) }}  />
+        <Tab.Screen name='RecentExpenses' component={RecentExpenses} options={{headerShown:true , tabBarLabel:'Recent' , title:'Recent' , tabBarIcon:({size,color})=>(<AntDesign name="hourglass" size={size} color={color} />) }}  />
         <Tab.Screen name='AllExpenses' component={AllExpenses}  options={{
           tabBarIcon:({color,size})=>(<AntDesign name="calendar" size={size} color={color} />)
         }} />
@@ -36,7 +38,7 @@ export default function App () {
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator >
-          <Stack.Screen name="ExpesesOverview" component={ExpensesOverview} />
+          <Stack.Screen name="ExpesesOverview" component={ExpensesOverview} options={{headerShown:false}} />
           <Stack.Screen name='ManageExpense' component={ManageExpense} />
         </Stack.Navigator>
       </NavigationContainer>
