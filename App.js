@@ -19,13 +19,13 @@ export default function App () {
 
   function ExpensesOverview () {
     return (
-      <Tab.Navigator screenOptions={{
+      <Tab.Navigator screenOptions={({navigation})=>({
         headerStyle:{backgroundColor:GlobalStyles.colors.primary500 },
         headerTintColor:'white',
         tabBarStyle:{backgroundColor:GlobalStyles.colors.primary500},
         tabBarActiveTintColor:GlobalStyles.colors.accent500,
-        headerRight:({tintColor})=> <IconsButton name="plus" size={24} color="white"  onPress={()=>{}}/>
-      }}>
+        headerRight:({tintColor})=> <IconsButton name="plus" size={24} color="white"  onPress={()=>{ navigation.navigate('ManageExpense')}}/>
+      })}>
         <Tab.Screen name='RecentExpenses' component={RecentExpenses} options={{headerShown:true , tabBarLabel:'Recent' , title:'Recent' , tabBarIcon:({size,color})=>(<AntDesign name="hourglass" size={size} color={color} />) }}  />
         <Tab.Screen name='AllExpenses' component={AllExpenses}  options={{
           tabBarIcon:({color,size})=>(<AntDesign name="calendar" size={size} color={color} />)

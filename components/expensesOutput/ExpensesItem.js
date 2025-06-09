@@ -1,10 +1,16 @@
 import { Pressable, View,StyleSheet,Text } from "react-native";
 import { GlobalStyles } from "../../constant/styles";
 import GetformatedDate from "../../util/getformatedDate";
+import { useNavigation } from "@react-navigation/native";
 
 function ExpensesItem({date,description,amount}){
+
+    const navigation = useNavigation()
+    function ExpensePressHandler(){
+        navigation.navigate('ManageExpense')
+    }
     return(
-        <Pressable>
+        <Pressable onPress={ExpensePressHandler} style={({pressed})=>pressed && styles.pressed} >
             <View style={styles.expnesesItem}>
                 <View >
                     <Text style={[styles.textbase,styles.description]}>{description}</Text>
@@ -22,6 +28,9 @@ function ExpensesItem({date,description,amount}){
 export default ExpensesItem
 
 const styles = StyleSheet.create({
+    pressed:{
+        opacity:0.75
+    },
     expnesesItem:{
         padding:12,
         marginVertical:8,
